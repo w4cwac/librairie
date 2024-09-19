@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supprimer un emprunteur</title>
+</head>
+<body>
+    <h1>Supprimer {{ emprunteur.nom }} {{ emprunteur.prenom }}</h1>
+    <p>Supprimer le membre ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Supprimer</button>
+    </form>
+    <a href="{% url 'emprunteur_list' %}">Retour à la liste des emprunteurs</a>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer un emprunteur</title>
+</head>
+<body>
+    <h1>Créer un emprunteur</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form>
+    <a href="{% url 'emprunteur_list' %}">Retour à la liste des emprunteurs</a>
+</body>
+</html>

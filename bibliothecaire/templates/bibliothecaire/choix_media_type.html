@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choisir le type de média</title>
+</head>
+<body>
+    <h1>Choisir le type de média</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Suivant</button>
+    </form>
+</body>
+</html>

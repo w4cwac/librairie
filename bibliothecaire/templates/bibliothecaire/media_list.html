@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des médias</title>
+</head>
+<body>
+    <h1>Liste des médias</h1>
+    <ul>
+        {% for media in medias %}
+        <li>
+            {{ media }}
+            {% if media.emprunteur %}
+                (Emprunté par : {{ media.emprunteur }} || [Date d'emprunt: {{ media.date_emprunt|date:"d/m/y" }}] - [Date de retour: {{media.date_retour|date:"d/m/y"}}] )
+                <form action="{% url 'rendre_media' emprunteur_id=media.emprunteur.id media_id=media.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Rendre</button>
+                </form>
+            {% else %}
+                <form action="{% url 'emprunter_media' media_id=media.id %}" method="post">
+                    {% csrf_token %}
+                    <label for="emprunteur">Choisissez un emprunteur:</label>
+                    <select name="emprunteur_id" id="emprunteur">
+                        {% for emprunteur in emprunteurs %}
+                        <option value="{{ emprunteur.id }}">{{ emprunteur.nom }} {{ emprunteur.prenom }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Emprunter</button>
+                </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'choix_media_type' %}">Ajouter un nouveau média</a> <br>
+    <a href="{% url 'emprunteur_list' %}">Retour à la liste des emprunteurs</a> <br>
+    <a href="{% url 'jeu_plateau_list' %}">Liste des jeux de plateau</a><br> <br>
+    {% if messages %}
+    {% for message in messages %}
+    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>

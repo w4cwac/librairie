@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Liste des jeux de plateau</title>
+</head>
+<body>
+    <h1>Liste des jeux de plateau</h1>
+    <ul>
+        {% for jeu in jeux %}
+        <li>
+            {{ jeu.nom }} - {{ jeu.fabricant }} - {{ jeu.description }} 
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'ajout_plateau' %}">Ajouter un nouveau jeu de plateau</a> <br>
+    <a href="{% url 'media_list' %}">Retour à la liste des médias</a>
+</body>
+</html>

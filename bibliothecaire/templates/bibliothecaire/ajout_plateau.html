@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un jeu de plateau</title>
+</head>
+<body>
+    <h1>Ajouter un jeu de plateau</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ajouter</button>
+    </form>
+    <a href="{% url 'jeu_plateau_list' %}">Retour à la liste des jeux de plateau </a>
+</body>
+</html>
